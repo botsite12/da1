@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Của Tôi</title>
+    <style>
+        /* Reset cơ bản */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Hình nền GIF - Bạn hãy thay link nếu cần */
+        body {
+            background: url('https://giffiles.alphacoders.com/223/223158.gif') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            padding-top: 80px; 
+            animation: fadeInAnimation 1.5s ease-in;/* Để tránh nội dung bị che bởi thanh điều hướng */
+        }
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0; /* Bắt đầu với độ trong suốt bằng 0 (tàng hình) */
+    }
+    to {
+        opacity: 1; /* Kết thúc với độ trong suốt bằng 1 (hiện rõ) */
+    }
+}
+        /* Lớp kính mờ (Áp dụng cho mọi khối) */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.15); /* Màu nền trong suốt */
+            backdrop-filter: blur(15px);           /* Hiệu ứng mờ */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        /* Thanh điều hướng cố định */
+        .navbar {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            color: #FFFF00; /* Màu vàng */
+        }
+
+        /* Khối nội dung chính */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Nhóm các thẻ Card */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .card {
+            width: 250px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Nút màu cầu vồng (Gradient) */
+        .gradient-btn {
+            background: linear-gradient(to right, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+            border: none;
+            padding: 10px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* Phần thông tin server (dài) */
+        .server-info {
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Chỉnh màu vàng trong suốt cho các phần văn bản */
+        .yellow-text {
+            color: rgba(255, 255, 0, 0.8); /* Vàng trong suốt */
+        }
+
+    </style>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+   <nav class="navbar">
+    <a href="index.html" class="nav-box"> Home</a>
+    <a href="index1.html" class="nav-box">FACEBOOK</a>
+    <a href="bye1.html" class="nav-box">1</a>
+    <a href="bye2.html" class="nav-box">2</a>
+</nav>
+
+    <main class="container">
+        
+        <section class="glass-panel" style="margin-bottom: 20px;">
+            <h1>Chào hai bạn đã đến trang web này</h1>
+            <p>Tôi làm trang web này để giúp mọi người vui hơn</p>
+        </section>
+
+        <div class="card-container">
+            <div class="card glass-panel">
+                <h3>TRANG CỦA HUYỀN</h3>
+                <button class="gradient-btn"><a href="bye1.html">vào</a></button>
+            </div>
+            <div class="card glass-panel">
+                <h3>TRANG CỦA AN</h3>
+                <button class="gradient-btn"><a href="bye1.html">vào</a></button>
+            </div>
+            <div class="card glass-panel">
+                <h3>MINECRAFT</h3>
+                <button class="gradient-btn"><a href="bye1.html">vào</a></button>
+            </div>
+        </div>
+
+
+        <section class="server-info glass-panel">
+            <h3 class="yellow-text">Server Minecraft </h3>
+            <video src="https://giffiles.alphacoders.com/223/223158.gif">11</video>
+        </section>
+        <section class="server-info glass-panel">
+            <h3 class="yellow-text">Địa chỉ : <a href="strong-rapid.gl.joinmc.link">strong-rapid.gl.joinmc.link</a></h3>
+        </section>
+        <section class="server-info glass-panel">
+            <p>Server này chỉ cho tôi chơi và người tôi cho vào thôi, nếu muốn xin liên hệ với Cường</p>
+        </section>
+
+    </main>
+    <section class="glass-panel">
+    <div class="glass mc-box">
+        Trạng thái: <span id="status">Đang tải...</span>
+    </div>
+    <div class="glass mc-box">
+        Người chơi: <span id="players">0/4</span>
+    </div>
+    <div class="glass mc-box">
+        Địa chỉ: <strong>strong-rapid.gl.joinmc.link</strong> </div>
+</section>
+<script>
+    async function checkServer() {
+        const ip = 'strong-rapid.gl.joinmc.link';
+        const statusEl = document.getElementById('status');
+        const playersEl = document.getElementById('players');
+
+        try {
+            // Thêm cache: 'no-cache' để đảm bảo không lấy dữ liệu cũ
+            const response = await fetch(`https://api.mcsrvstat.us/2/${ip}`, { cache: 'no-cache' });
+            const data = await response.json();
+
+            if (data.online) {
+                statusEl.innerText = "🟢 Online";
+                statusEl.style.color = "#4ade80";
+                playersEl.innerText = `${data.players.online} / ${data.players.max}`;
+            } else {
+                statusEl.innerText = "🔴 Offline";
+                statusEl.style.color = "#f87171";
+                playersEl.innerText = "0 / 4";
+            }
+        } catch (error) {
+            statusEl.innerText = "Lỗi kết nối";
+            console.error("Lỗi API:", error);
+        }
+    }
+
+    checkServer();
+    setInterval(checkServer, 30000); // Tự cập nhật mỗi 30 giây
+</script>
+</body>
+</html>

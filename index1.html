@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Social - Gojo Style</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: url('https://giffiles.alphacoders.com/223/223158.gif') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+        }
+    </style>
+    <script>
+        const navLinks = document.querySelectorAll('.nav-box');
+        const clickSound = document.getElementById('click-sound');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                clickSound.currentTime = 0;
+                clickSound.play();
+                const targetUrl = this.getAttribute('href'); 
+                setTimeout(() => { window.location.href = targetUrl; }, 300); 
+            });
+        });
+    </script>
+</head>
+<body>
+    
+
+   
+    <nav class="navbar">
+    <a href="index.html" class="nav-box"> Home</a>
+    <a href="index1.html" class="nav-box">FACEBOOK</a>
+    <a href="bye1.html" class="nav-box">1</a>
+    <a href="bye2.html" class="nav-box">2</a>
+</nav>
+
+
+
+    <div class="social-container">
+        <h2 class="title">Kết nối với tôi</h2>
+        <a href="https://www.facebook.com/bot.ahihi.505/" class="social-card" target="_blank">Facebook</a>
+        <a href="https://www.tiktok.com/@theantiktok" class="social-card" target="_blank">TIKTOK</a>
+        <a href="https://discord.gg/uq5PYxXr" class="social-card" target="_blank">Discord</a>
+    </div>
+<audio id="click-sound" src="click.mp3"></audio>
+</body>
+</html>

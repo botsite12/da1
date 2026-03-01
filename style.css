@@ -1,0 +1,135 @@
+/* Layout chứa các thẻ social */
+.social-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    gap: 20px;
+    padding-top: 100px; /* Tránh bị menu che */
+}
+
+.title {
+    color: #e72525;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #00bfff;
+}
+.hero-background {
+    /* Thay link vào đây */
+    background-image: url('https://media1.tenor.com/m/wD2L-e-xUFAAAAAC/gojo-satoru-jjk.gif');
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    filter: brightness(0.8);
+}
+
+/* Khung từng mạng xã hội (tương tự nav-box nhưng to hơn) */
+.social-card {
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+}
+
+/* Hiệu ứng di chuột */
+.social-card:hover {
+    background: rgba(0, 191, 255, 0.3);
+    border-color: #00bfff;
+    box-shadow: 0 0 20px #00bfff;
+    transform: scale(1.05); /* Phóng to nhẹ */
+}
+.navbar {
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 1000;
+}
+.nav-box {
+    padding: 12px 25px;
+    background: rgba(255, 255, 255, 0.1); /* Màu nền trong suốt */
+    backdrop-filter: blur(10px);          /* Hiệu ứng mờ đục (glassmorphism) */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Viền mỏng */
+    border-radius: 15px;                  /* Bo tròn góc */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.4s ease;            /* Hiệu ứng mượt mà */
+    animation: slideDown 0.8s ease-out;   /* Hiệu ứng hiện lên */
+}
+
+/* 1. Hiệu ứng khi di chuột vào (Hover) */
+.nav-box:hover {
+    background: rgba(0, 191, 255, 0.3);   /* Nền xanh Gojo mờ */
+    border-color: #00bfff;                /* Viền xanh sáng */
+    box-shadow: 0 0 15px #00bfff;         /* Tỏa sáng */
+    transform: scale(1.1);                /* Phóng to nhẹ */
+}
+
+/* 2. Hiệu ứng chuyển động xuất hiện ban đầu */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tạo độ trễ để các nút hiện ra lần lượt */
+.nav-box:nth-child(2) { animation-delay: 0.1s; }
+.nav-box:nth-child(3) { animation-delay: 0.2s; }
+.nav-box:nth-child(4) { animation-delay: 0.3s; }
+
+
+
+
+/* Style cho Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.95); /* Tối hơn một chút để che toàn bộ */
+    backdrop-filter: blur(20px);      /* Mờ mịt */
+    z-index: 9999;                   /* Luôn nằm trên cùng */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(26, 26, 46, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #00bfff;
+    text-align: center;
+    color: white;
+    width: 300px;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border: 1px solid #00bfff;
+    background: #161625;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
