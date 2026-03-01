@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://testanull.com/favicon.ico" rel="icon">
     <title>Trang Web Của Tôi</title>
     <style>
         /* Reset cơ bản */
@@ -101,14 +102,6 @@
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-
-   <nav class="navbar">
-    <a href="index.html" class="nav-box"> Home</a>
-    <a href="index1.html" class="nav-box">FACEBOOK</a>
-    <a href="bye1.html" class="nav-box">1</a>
-    <a href="bye2.html" class="nav-box">2</a>
-</nav>
-
     <main class="container">
         
         <section class="glass-panel" style="margin-bottom: 20px;">
@@ -183,5 +176,59 @@
     checkServer();
     setInterval(checkServer, 30000); // Tự cập nhật mỗi 30 giây
 </script>
+<nav class="ios-dock">
+    <a href="index.html" class="nav-item active">Home</a>
+    <a href="index1.html" class="nav-item">Facebook</a>
+    <a href="bye1.html" class="nav-item">1</a>
+    <a href="bye2.html" class="nav-item">2</a>
+</nav>
+
+<style>
+    /* Thanh chứa (Container) */
+    .ios-dock {
+        position: fixed;
+        bottom: 30px; /* Cách mép dưới màn hình */
+        left: 50%;
+        transform: translateX(-50%);
+        
+        /* Hiệu ứng kính mờ (Glassmorphism) */
+        background: rgba(255, 255, 255, 0.1); 
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 40px; /* Bo góc cực tròn kiểu iOS */
+        padding: 10px 25px;
+        display: flex;
+        gap: 25px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        z-index: 999;
+    }
+
+    /* Các nút điều hướng */
+    .nav-item {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 8px 12px;
+        border-radius: 20px;
+    }
+
+    /* Hiệu ứng khi di chuột qua */
+    .nav-item:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    /* Trạng thái active */
+    .nav-item.active {
+        color: white;
+        font-weight: 700;
+    }
+</style>
 </body>
 </html>
