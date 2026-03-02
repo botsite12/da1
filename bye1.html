@@ -2,8 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <link href="https://testanull.com/favicon.ico" rel="icon">
-    <title>Gửi Huyền</title>
+    <title>Social - Gojo Style</title>
     <link rel="stylesheet" href="style.css"> 
     <style>
         body {
@@ -208,7 +207,24 @@
     <a href="bye1.html" class="nav-box">1</a>
     <a href="bye2.html" class="nav-box">2</a>
 </nav>
+<audio id="myAudio" src="boom.mp3"></audio>
+    <audio id="myAudio1" src="click.mp3"></audio>
+    <script>
+        // Hàm xử lý khi nhấn HELLO
+        function sayFarewell() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('farewell-content').style.display = 'block';
+            document.getElementById('myAudio').play();
+        }
 
+        // Hàm xử lý âm thanh menu
+        const menuAudio = document.getElementById('myAudio1');
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                menuAudio.currentTime = 0;
+                menuAudio.play().catch(() => {});
+            });
+        });
+    </script>
 </body>
-
 </html>

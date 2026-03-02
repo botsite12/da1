@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://testanull.com/favicon.ico" rel="icon">
     <title>Gửi Hữu</title>
     <link rel="stylesheet" href="2.css">
+    <style>
+        /* CSS cho nền và box chính */
+        .bg-gif { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+        
+        .glass-box {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* CSS Thanh dock (đã giữ nguyên như của bạn) */
+        .ios-dock {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 40px;
+            padding: 10px 25px;
+            display: flex;
+            gap: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+        .nav-item { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 500; padding: 8px 12px; }
+        .nav-item:hover { color: white; background: rgba(255, 255, 255, 0.2); border-radius: 20px; }
+    </style>
 </head>
 <body>
 
@@ -13,82 +48,43 @@
 
     <div class="glass-box" id="main-box">
         <div id="start-screen">
-            <h1 id="goodbye-btn" onclick="sayFarewell()">HELLO</h1>
+            <h1 id="goodbye-btn" onclick="sayFarewell()" style="cursor: pointer;">HELLO</h1>
             <p>( nhấn vào Có một lời nhắn tới BẠN HỮU... )</p>
         </div>
 
-        <div id="farewell-content">
+        <div id="farewell-content" style="display: none;">
             <h2>Gửi Hữu,</h2>
             <p>NGỦ NGON</p>
-            <p>NGỦ ĐI, NGỦ ĐI, NGỦ ĐI</p>
-            <p>NGỦ ĐI, NGỦ ĐI, NGỦ ĐI</p>
             <p>NGỦ ĐI, NGỦ ĐI, NGỦ ĐI</p>
             <p style="margin-top: 20px; font-style: italic; color: #a5ccff;">NGỦ ĐI THẰNG L</p>
         </div>
     </div>
 
-    
+    <nav class="ios-dock">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="index1.html" class="nav-item">Facebook</a>
+        <a href="bye1.html" class="nav-item">1</a>
+        <a href="bye2.html" class="nav-item">2</a>
+    </nav>
 
+    <audio id="myAudio" src="boom.mp3"></audio>
+    <audio id="myAudio1" src="click.mp3"></audio>
     <script>
+        // Hàm xử lý khi nhấn HELLO
         function sayFarewell() {
             document.getElementById('start-screen').style.display = 'none';
             document.getElementById('farewell-content').style.display = 'block';
-            document.getElementById('main-box').style.background = 'rgba(0, 0, 0, 0.4)';
+            document.getElementById('myAudio').play();
         }
+
+        // Hàm xử lý âm thanh menu
+        const menuAudio = document.getElementById('myAudio1');
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                menuAudio.currentTime = 0;
+                menuAudio.play().catch(() => {});
+            });
+        });
     </script>
-    <nav class="ios-dock">
-    <a href="index.html" class="nav-item active">Home</a>
-    <a href="index1.html" class="nav-item">Facebook</a>
-    <a href="bye1.html" class="nav-item">1</a>
-    <a href="bye2.html" class="nav-item">2</a>
-</nav>
-
-<style>
-    /* Thanh chứa (Container) */
-    .ios-dock {
-        position: fixed;
-        bottom: 30px; /* Cách mép dưới màn hình */
-        left: 50%;
-        transform: translateX(-50%);
-        
-        /* Hiệu ứng kính mờ (Glassmorphism) */
-        background: rgba(255, 255, 255, 0.1); 
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 40px; /* Bo góc cực tròn kiểu iOS */
-        padding: 10px 25px;
-        display: flex;
-        gap: 25px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        z-index: 999;
-    }
-
-    /* Các nút điều hướng */
-    .nav-item {
-        color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        font-weight: 500;
-        font-size: 15px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        padding: 8px 12px;
-        border-radius: 20px;
-    }
-
-    /* Hiệu ứng khi di chuột qua */
-    .nav-item:hover {
-        color: white;
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
-    }
-
-    /* Trạng thái active */
-    .nav-item.active {
-        color: white;
-        font-weight: 700;
-    }
-</style>
 </body>
 </html>

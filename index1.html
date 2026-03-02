@@ -2,8 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <link href="https://testanull.com/favicon.ico" rel="icon">
-    <title>ID CỦA MÌNH</title>
+    <title>Social - Gojo Style</title>
     <link rel="stylesheet" href="style.css"> 
     <style>
         body {
@@ -52,6 +51,35 @@
         <a href="https://www.tiktok.com/@theantiktok" class="social-card" target="_blank">TIKTOK</a>
         <a href="https://discord.gg/uq5PYxXr" class="social-card" target="_blank">Discord</a>
     </div>
-<audio id="click-sound" src="click.mp3"></audio>
+<audio id="sound-menu" src="click.mp3" preload="auto"></audio>
+<audio id="sound-fb" src="1.mp3" preload="auto"></audio>
+<audio id="sound-tiktok" src="boom.mp3" preload="auto"></audio>
+<audio id="sound-discord" src="2.mp3" preload="auto"></audio>
+<script>
+    // Hàm phát âm thanh dùng chung
+    function playAudio(id) {
+        const audio = document.getElementById(id);
+        audio.currentTime = 0; // Đưa về đầu
+        audio.play().catch(e => console.log("Trình duyệt chưa cho phép phát âm thanh"));
+    }
+
+    // 1. Âm thanh cho Menu (Nav-box)
+    document.querySelectorAll('.nav-box').forEach(item => {
+        item.addEventListener('mouseenter', () => playAudio('sound-menu'));
+    });
+
+    // 2. Âm thanh cho từng mạng xã hội
+    // Gán sự kiện cho từng thẻ <a> trong social-container
+    const socialLinks = document.querySelectorAll('.social-card');
+    
+    // Facebook (phần tử thứ 0)
+    socialLinks[0].addEventListener('mouseenter', () => playAudio('sound-fb'));
+    
+    // TikTok (phần tử thứ 1)
+    socialLinks[1].addEventListener('mouseenter', () => playAudio('sound-tiktok'));
+    
+    // Discord (phần tử thứ 2)
+    socialLinks[2].addEventListener('mouseenter', () => playAudio('sound-discord'));
+</script>
 </body>
 </html>
